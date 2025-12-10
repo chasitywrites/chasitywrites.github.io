@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chasity Gaines | Writer & ESL Tutor</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --accent: #f97316;
+      --accent-soft: rgba(249, 115, 22, 0.1);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --card: #020617;
+      --border-subtle: rgba(148, 163, 184, 0.15);
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.85);
+      --radius-lg: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 45%, #020617 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      background: conic-gradient(from 200deg, #f97316, #fb923c, #facc15, #f97316);
+      position: relative;
+      padding: 2px;
+    }
+
+    .brand-mark-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: radial-gradient(circle at 20% 0, #fee2e2 0, #0f172a 45%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-text h1 {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .brand-text span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    nav {
+      display: flex;
+      gap: 16px;
+      font-size: 0.9rem;
+    }
+
+    nav a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--text-muted);
+      transition: background 0.18s ease, color 0.18s ease, transform 0.12s ease;
+    }
+
+    nav a:hover {
+      background: rgba(15, 23, 42, 0.9);
+      color: #f9fafb;
+      transform: translateY(-1px);
+    }
+
+    nav a.primary-link {
+      border: 1px solid rgba(249, 115, 22, 0.55);
+      color: #fed7aa;
+      background: radial-gradient(circle at top left, rgba(249, 115, 22, 0.18), transparent 55%);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 26px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 840px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, rgba(249, 115, 22, 0.2), transparent 55%),
+                  linear-gradient(145deg, #020617 0, #020617 45%, #020617 100%);
+      border-radius: var(--radius-lg);
+      padding: 24px 22px 22px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.75rem;
+      color: #e5e7eb;
+      margin-bottom: 12px;
+    }
+
+    .hero-pill span.emoji {
+      font-size: 0.9rem;
+    }
+
+    .hero-pill span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .hero-heading {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-subline {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 34rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-subline strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: none;
+      color: inherit;
+      transition: background 0.18s ease, transform 0.12s ease, border-color 0.18s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #f97316, #facc15);
+      color: #0b1120;
+      font-weight: 600;
+      border-color: rgba(15, 23, 42, 0.7);
+      box-shadow: 0 14px 30px rgba(249, 115, 22, 0.32);
+    }
+
+    .btn-outline {
+      border-color: rgba(148, 163, 184, 0.7);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      background-position: 100% 0;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding-right: 10px;
+      border-right: 1px solid rgba(55, 65, 81, 0.8);
+    }
+
+    .hero-meta span:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .hero-meta .badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(96, 165, 250, 0.6);
+      color: #bfdbfe;
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: auto -40px -72px auto;
+      width: 220px;
+      aspect-ratio: 1 / 1;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.35);
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .hero-orbit-inner {
+      width: 62%;
+      aspect-ratio: 1 / 1;
+      border-radius: inherit;
+      background: radial-gradient(circle, rgba(15, 23, 42, 0.2), transparent 60%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: #e5e7eb;
+      text-align: center;
+      padding: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      backdrop-filter: blur(4px);
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.8), #020617 58%);
+      border-radius: 18px;
+      padding: 16px 15px 14px;
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.85);
+    }
+
+    .card h2 {
+      font-size: 0.96rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .about-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .about-text strong {
+      color: #e5e7eb;
+    }
+
+    .list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .list-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 8px 9px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 0.85rem;
+    }
+
+    .list-item span.label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #6b7280;
+    }
+
+    .list-item span.value {
+      color: #e5e7eb;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .pill {
+      font-size: 0.76rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(156, 163, 175, 0.6);
+      color: #d1d5db;
+    }
+
+    section {
+      margin-top: 28px;
+    }
+
+    section h2 {
+      font-size: 1rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .project-card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 18px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 14px 13px 13px;
+      font-size: 0.86rem;
+    }
+
+    .project-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .project-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .project-meta {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      margin-top: 6px;
+    }
+
+    .contact {
+      margin-top: 26px;
+      padding: 18px 15px 16px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.18), rgba(15, 23, 42, 0.96));
+      border: 1px solid rgba(251, 146, 60, 0.6);
+      font-size: 0.88rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .contact-main {
+      max-width: 420px;
+    }
+
+    .contact strong {
+      color: #fed7aa;
+    }
+
+    .contact small {
+      display: block;
+      font-size: 0.78rem;
+      color: #fef3c7;
+      margin-top: 2px;
+    }
+
+    .contact-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer {
+      margin-top: 26px;
+      font-size: 0.78rem;
+      color: #4b5563;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 10px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer a {
+      color: #9ca3af;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header>
+      <div class="brand">
+        <div class="brand-mark">
+          <div class="brand-mark-inner">CG</div>
+        </div>
+        <div class="brand-text">
+          <h1>Chasity&nbsp;Gaines</h1>
+          <span>Writer · Poet · ESL Tutor</span>
+        </div>
+      </div>
+      <nav>
+        <a href="#writing">Writing</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="primary-link">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-card" aria-labelledby="hero-title">
+        <div class="hero-pill">
+          <span class="emoji">✨</span>
+          <span>Stories that hold memory, magic, and heart.</span>
+          <span class="dot"></span>
+        </div>
+        <h2 id="hero-title" class="hero-heading">Southern stories, moonlit worlds, and classrooms full of wonder.</h2>
+        <p class="hero-subline">
+          I&#39;m <strong>Chasity&nbsp;Gaines</strong> — a writer, poet, and longtime online ESL tutor. I write about
+          grandmothers and legacies, moon-dwelling granddaughters, and the quiet hauntings of everyday life.
+        </p>
+        <div class="hero-actions">
+          <a href="#writing" class="btn btn-primary">Read my work</a>
+          <a href="#teaching" class="btn btn-outline">ESL &amp; tutoring</a>
+        </div>
+        <div class="hero-meta">
+          <span><span class="badge">In progress</span> Avaline &amp; the Star Shoes</span>
+          <span>Poetry · Short fiction · Children&#39;s stories</span>
+        </div>
+        <div class="hero-orbit" aria-hidden="true">
+          <div class="hero-orbit-inner">
+            Avaline, Aurora, witches, Southern queens, and children learning new words — all live here.
+          </div>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <section id="about" class="card">
+          <h2>About</h2>
+          <p class="about-text">
+            I&#39;ve been writing since I could form words. My work often weaves together <strong>family history</strong>,
+            <strong>Southern roots</strong>, and a touch of <strong>magic or the uncanny</strong>. When I&#39;m not writing,
+            I teach English to kids and teens around the world from my home in the U.S.
+          </p>
+        </section>
+
+        <section class="card">
+          <h2>At a Glance</h2>
+          <ul class="list">
+            <li class="list-item">
+              <span class="label">Current projects</span>
+              <span class="value">Middle-grade fantasy, short horror, ESL readers, and children&#39;s picture books.</span>
+            </li>
+            <li class="list-item">
+              <span class="label">Teaching</span>
+              <span class="value">Online ESL tutor since 2019 – specializing in young learners and creative vocabulary work.</span>
+            </li>
+          </ul>
+          <div class="pill-row">
+            <span class="pill">Poetry</span>
+            <span class="pill">Kidlit &amp; middle grade</span>
+            <span class="pill">Horror (soft &amp; strange)</span>
+            <span class="pill">ESL &amp; language learning</span>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    $1
+
+    <!-- Writing Samples Section -->
+    <section id="samples">
+      <h2>Writing Samples</h2>
+      <div class="grid">
+        <article class="project-card">
+          <div class="project-label">Published · Medium</div>
+          <div class="project-title">Elegy for Helen (Excerpt)</div>
+          <p>
+            “She taught me to walk with a book on my head, to mind my elbows at the dinner table, and to listen for the
+            whisper of her voice shifting into that proper Southern tone…”
+          </p>
+          <p class="project-meta">Theme: legacy, memory, Southern matriarchs.</p>
+          <p><a href="https://medium.com/@chasitygaines/" target="_blank">Read full poem on Medium →</a></p>
+        </article>
+
+        <article class="project-card">
+          <div class="project-label">Published · Coffee House Writers</div>
+          <div class="project-title">Short Stories & Columns</div>
+          <p>
+            A collection of personal essays, reflections, and short creative works published with Coffee House Writers.
+            These pieces explore everyday magic, identity, and the echoes of Southern womanhood.
+          </p>
+          <p class="project-meta">Updated regularly.</p>
+          <p><a href="https://coffeehousewriters.com/author/chasityg/" target="_blank">Visit author page →</a></p>
+        </article>
+
+        <article class="project-card">
+          <div class="project-label">Excerpt · Middle Grade</div>
+          <div class="project-title">Avaline & the Star Shoes</div>
+          <p>
+            “Starlight spilled across Avaline’s bedroom floor the moment she stepped into the shoes. A soft hum rose from
+            them — the kind of sound that made her think of her grandmother’s laugh, warm and far away on the moon…”
+          </p>
+          <p class="project-meta">Preview only · full manuscript in progress.</p>
+        </article>
+
+        <article class="project-card">
+          <div class="project-label">Excerpt · Horror Concept</div>
+          <div class="project-title">Missing</div>
+          <p>
+            “The girl in the hallway stared back at me from the missing poster — same hair, same freckle on the chin. I
+            touched my face and felt nothing. No warmth. No heartbeat.”
+          </p>
+          <p class="project-meta">Preview only · unpublished.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="teaching">
+      <h2>Teaching &amp; ESL</h2>
+      <div class="grid">
+        <article class="project-card">
+          <div class="project-label">Online ESL</div>
+          <div class="project-title">Young learners &amp; teens</div>
+          <p>
+            I work with students across Asia and beyond, helping them build confidence in speaking, reading, and writing
+            through songs, stories, and real conversation.
+          </p>
+          <p class="project-meta">Focus: pronunciation, vocabulary, playful practice, and gentle correction.</p>
+        </article>
+
+        <article class="project-card">
+          <div class="project-label">Materials</div>
+          <div class="project-title">Custom lessons &amp; readers</div>
+          <p>
+            From KET-style materials to themed stories with comprehension questions, I create resources tailored to each
+            student&#39;s level and interests.
+          </p>
+          <p class="project-meta">Great for families looking to support English learning at home.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="contact-main">
+        <p>
+          <strong>Want to read more, collaborate, or talk about ESL lessons?</strong>
+          <small>
+            Get in touch about writing, editing, or English tutoring for kids and teens.
+          </small>
+        </p>
+      </div>
+      <div class="contact-cta">
+        <!-- Replace the # with your actual email link when you’re ready -->
+        <a href="mailto:your.email@example.com" class="btn btn-primary">Email Chasity</a>
+        <a href="#" class="btn btn-outline">Download sample work (coming soon)</a>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> Chasity&nbsp;Gaines. All rights reserved.</span>
+      <span>Site by Chasity &amp; ChatGPT.</span>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year automatically
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
